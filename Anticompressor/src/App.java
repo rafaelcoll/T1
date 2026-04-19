@@ -26,7 +26,7 @@ public class App {
     }
 
     private static String[][] carregarDicionario(String caminhoArquivo) {
-        String[][] pares;
+        String[][] pares = new String[0][0];
 
         try {
             List<String> linhas = Files.readAllLines(Path.of(caminhoArquivo));

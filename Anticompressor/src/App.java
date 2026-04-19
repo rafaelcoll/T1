@@ -14,11 +14,12 @@ public class App {
         Anticompressor anticompressor = new Anticompressor(dicionario);
 
         System.out.println("Dicionário carregado com sucesso.");
-        System.out.println(anticompressor.stringDicionario(dicionario));
+        System.out.println(anticompressor.dicionarioString(dicionario));
 
         long inicio = System.currentTimeMillis();
         String result = anticompressor.anticompressor(dicionario);
         long fim = System.currentTimeMillis();
+
         // System.out.println("Resultado: " + result);
         System.out.println("Comprimento do resultado: " + result.length());
         System.out.println("Tempo de execução: " + (fim - inicio) + "ms");

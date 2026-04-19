@@ -1,53 +1,49 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class Anticompressor {
-    Map<String, String> mapaDicionario = new HashMap<>();
+    String[][] dicionario = new String[0][0];
 
     public Anticompressor(String[][] dicionario) {
-        for (String[] par : dicionario) {
-            mapaDicionario.put(par[0], par[1]);
-        }
+        this.dicionario = dicionario;
     }
 
     public String anticompressor(String[][] dicionario) {
         StringBuilder resultadoFinal = new StringBuilder();
-        String valorInicial = mapaDicionario.get(dicionario[0][0]);
-        System.out.println("Valor inicial: " + valorInicial);
+        String raiz = this.dicionario[0][0];
+        System.out.println("Raiz do dicionário: " + raiz);
 
-        resultadoFinal.append(adicionaValor(valorInicial, mapaDicionario));
-        
+        resultadoFinal.append(adicionaValor(raiz));
         return resultadoFinal.toString();
     }
-    
-    private static String buscaValor(String chave, Map<String, String> mapaDicionario) {
-        String valor = mapaDicionario.get(chave);
-        if (valor == null || valor.isEmpty()) {
-            return chave;
+
+    private String buscaValor(String chave) {
+        String valor = null;
+        for (String[] par : this.dicionario) {
+            if (par[0].equals(chave)) {
+                valor = par[1];
+                break;
+            }
         }
-        return adicionaValor(valor, mapaDicionario);
+        return (valor == null || valor.isEmpty()) ? chave : adicionaValor(valor);
     }
-    
-    private static String adicionaValor(String valor, Map<String, String> mapaDicionario) {
+
+    private String adicionaValor(String valor) {
         StringBuilder resultado = new StringBuilder();
         for (char c : valor.toCharArray()) {
-            resultado.append(buscaValor(String.valueOf(c), mapaDicionario));
+            resultado.append(buscaValor(String.valueOf(c)));
         }
         return resultado.toString();
     }
 
-    public String stringDicionario(String[][] dicionario) {
-        StringBuilder resultado = new StringBuilder();
+    public String dicionarioString(String[][] dicionario) {
+        StringBuilder dicionarioString = new StringBuilder();
         for (String[] linha : dicionario) {
             // Ignorar entradas inválidas
             if (linha == null || linha.length != 2) {
-                continue; 
+                continue;
             }
-
             String chave = linha[0];
             String valor = linha[1];
-            resultado.append(chave).append(" ").append(valor).append("\n");
+            dicionarioString.append(chave).append(" ").append(valor).append("\n");
         }
-        return resultado.toString();
+        return dicionarioString.toString();
     }
 }

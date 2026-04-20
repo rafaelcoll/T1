@@ -27,7 +27,7 @@ public class App {
     }
 
     private static void salvarResultado(String caminhoOriginal, String resultado) {
-        String caminhoSaida = caminhoOriginal + ".fat";
+        String caminhoSaida = caminhoOriginal + ".exp";
 
         try {
             Files.writeString(Path.of(caminhoSaida), resultado);

@@ -10,7 +10,7 @@ public class Anticompressor {
         String raiz = this.dicionario[0][0];
         System.out.println("Raiz do dicionário: " + raiz);
 
-        resultadoFinal.append(adicionaValor(raiz));
+        resultadoFinal.append(buscaValor(raiz));
         return resultadoFinal.toString();
     }
 

@@ -23,6 +23,18 @@ public class App {
         // System.out.println("Resultado: " + result);
         System.out.println("Comprimento do resultado: " + result.length());
         System.out.println("Tempo de execução: " + (fim - inicio) + "ms");
+        salvarResultado(args[0], result);
+    }
+
+    private static void salvarResultado(String caminhoOriginal, String resultado) {
+        String caminhoSaida = caminhoOriginal + ".fat";
+
+        try {
+            Files.writeString(Path.of(caminhoSaida), resultado);
+            System.out.println("Resultado salvo em: " + caminhoSaida);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao salvar resultado em: " + caminhoSaida, e);
+        }
     }
 
     private static String[][] carregarDicionario(String caminhoArquivo) {
